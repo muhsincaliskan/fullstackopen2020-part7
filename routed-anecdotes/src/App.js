@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Switch, Route, useRouteMatch,BrowserRouter as Router } from 'react-router-dom'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import Footer from './components/Footer'
 import About from './components/About'
 import Menu from './components/Menu'
@@ -39,22 +39,22 @@ const App = () => {
     }, 10000)
   }
 
-  const match = useRouteMatch('/anecdotes/:id')
-  const anecdote = match
-    ? anecdotes.find((anecdote) => anecdote.id === Number(match.params.id))
-    : null
+  // const match = useRouteMatch('/anecdotes/:id')
+  // const anecdote = match
+  //   ? anecdotes.find((anecdote) => anecdote.id === Number(match.params.id))
+  //   : null
 
   return (
     <div>
       <h1>Software anecdotes</h1>
     
         <Menu />
-        <Switch>
+        <Notification notification={notification} />
+        {/* <Switch> */}
         <Route path='/anecdotes/:id'>
-            <Anecdote anecdotes={anecdote} />
+            <Anecdote anecdotes={anecdotes} />
           </Route>
           <Route path="/">
-            <Notification notification={notification} />
             <AnecdoteList anecdotes={anecdotes} />
           </Route>
           <Route path="/about">
@@ -63,7 +63,7 @@ const App = () => {
           <Route path="/create_new">
             <CreateNew addNew={addNew} />
           </Route>
-        </Switch>
+        {/* </Switch> */}
         <Footer />
    
     </div>
